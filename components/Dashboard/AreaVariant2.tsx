@@ -1,7 +1,5 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import {
   ChartConfig,
   ChartContainer,
@@ -9,19 +7,21 @@ import {
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
+} from '@/components/ui/chart';
+import * as React from 'react';
+import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
 
 const chartConfig = {
   visitors: {
-    label: "Transactions",
+    label: 'Transactions',
   },
   desktop: {
-    label: "Income",
-    color: "#3d82f6", // Corrected color value
+    label: 'Income',
+    color: '#3d82f6', // Corrected color value
   },
   mobile: {
-    label: "Expense",
-    color: "#f43f5e", // Corrected color value
+    label: 'Expense',
+    color: '#f43f5e', // Corrected color value
   },
 } satisfies ChartConfig;
 
@@ -34,15 +34,15 @@ type Props = {
 };
 
 export function AreaVariant2({ data }: Props) {
-  const [timeRange, setTimeRange] = React.useState("90d");
+  const [timeRange, setTimeRange] = React.useState('90d');
 
   const filteredData = data.filter((item) => {
     const date = new Date(item.date);
-    const referenceDate = new Date("2024-06-30");
+    const referenceDate = new Date('2024-06-30');
     let daysToSubtract = 90;
-    if (timeRange === "30d") {
+    if (timeRange === '30d') {
       daysToSubtract = 30;
-    } else if (timeRange === "7d") {
+    } else if (timeRange === '7d') {
       daysToSubtract = 7;
     }
     const startDate = new Date(referenceDate);
@@ -93,9 +93,9 @@ export function AreaVariant2({ data }: Props) {
             minTickGap={32}
             tickFormatter={(value) => {
               const date = new Date(value);
-              return date.toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric",
+              return date.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
               });
             }}
           />
@@ -104,9 +104,9 @@ export function AreaVariant2({ data }: Props) {
             content={
               <ChartTooltipContent
                 labelFormatter={(value) => {
-                  return new Date(value).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
+                  return new Date(value).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
                   });
                 }}
                 indicator="dot"

@@ -1,31 +1,22 @@
-"use client";
+'use client';
 
-import { TrendingUp } from "lucide-react";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
+} from '@/components/ui/chart';
 
 const chartConfig = {
   income: {
-    label: "Income",
-    color: "#3d82f6",
+    label: 'Income',
+    color: '#3d82f6',
   },
   expense: {
-    label: "Expense",
-    color: "#f43f5e",
+    label: 'Expense',
+    color: '#f43f5e',
   },
 } satisfies ChartConfig;
 
@@ -55,9 +46,9 @@ export function BarVariant({ data }: Props) {
             minTickGap={32}
             tickFormatter={(value) => {
               const date = new Date(value);
-              return date.toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric",
+              return date.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
               });
             }}
           />
@@ -66,9 +57,9 @@ export function BarVariant({ data }: Props) {
             content={
               <ChartTooltipContent
                 labelFormatter={(value) => {
-                  return new Date(value).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
+                  return new Date(value).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
                   });
                 }}
                 indicator="dot"

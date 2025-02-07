@@ -1,25 +1,25 @@
-import { useConfirm } from "@/hooks/use-confirm";
-import { useGetAccounts } from "@/features/accounts/api/use-get-accounts";
-import { useCreateAccount } from "@/features/accounts/api/use-create-account";
-import { useGetCategories } from "@/features/categories/api/use-get-categories";
-import { useGetTransaction } from "../api/use-get-transaction";
-import { useCreateCategory } from "@/features/categories/api/use-create-category";
-import { useOpenTransaction } from "../hooks/use-open-transaction";
-import { useEditTransaction } from "../api/use-edit-transaction";
-import { useDeleteTransaction } from "../api/use-delete-transaction";
-import { inserTransactionSchema } from "@/db/schema";
+import { useConfirm } from '@/hooks/use-confirm';
+import { useGetAccounts } from '@/features/accounts/api/use-get-accounts';
+import { useCreateAccount } from '@/features/accounts/api/use-create-account';
+import { useGetCategories } from '@/features/categories/api/use-get-categories';
+import { useGetTransaction } from '../api/use-get-transaction';
+import { useCreateCategory } from '@/features/categories/api/use-create-category';
+import { useOpenTransaction } from '../hooks/use-open-transaction';
+import { useEditTransaction } from '../api/use-edit-transaction';
+import { useDeleteTransaction } from '../api/use-delete-transaction';
+import { inserTransactionSchema } from '@/db/schema';
 
-import { z } from "zod";
-import { Loader2 } from "lucide-react";
+import { z } from 'zod';
+import { Loader2 } from 'lucide-react';
 
-import TransactionForm from "./transaction-form";
+import TransactionForm from './transaction-form';
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "@/components/ui/sheet";
+} from '@/components/ui/sheet';
 
 const formSchema = inserTransactionSchema.omit({ id: true });
 
@@ -33,8 +33,8 @@ const EditTransactionSheet = () => {
   const deleteMutation = useDeleteTransaction(id);
 
   const [ConfirmationDialog, confirm] = useConfirm(
-    "Are you sure you want to delete this transaction?",
-    "This action cannot be undone."
+    'Are you sure you want to delete this transaction?',
+    'This action cannot be undone.',
   );
 
   const categroryQuery = useGetCategories();
@@ -100,12 +100,12 @@ const EditTransactionSheet = () => {
         notes: transactionQuiery.data.notes,
       }
     : {
-        accountId: "",
-        amount: "",
-        categoryId: "",
-        payee: "",
+        accountId: '',
+        amount: '',
+        categoryId: '',
+        payee: '',
         date: new Date(),
-        notes: "",
+        notes: '',
       };
 
   return (

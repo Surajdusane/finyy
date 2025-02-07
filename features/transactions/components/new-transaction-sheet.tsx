@@ -1,5 +1,5 @@
-import { inserTransactionSchema } from "@/db/schema";
-import { z } from "zod";
+import { inserTransactionSchema } from '@/db/schema';
+import { z } from 'zod';
 
 import {
   Sheet,
@@ -7,15 +7,15 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "@/components/ui/sheet";
-import { useCreateAccount } from "@/features/accounts/api/use-create-account";
-import { useGetAccounts } from "@/features/accounts/api/use-get-accounts";
-import { useCreateCategory } from "@/features/categories/api/use-create-category";
-import { useGetCategories } from "@/features/categories/api/use-get-categories";
-import { useCreateTransaction } from "../api/use-create-transaction";
-import { useNewTransaction } from "../hooks/use-new-transaction";
-import TransactionForm from "./transaction-form";
-import { Loader2 } from "lucide-react";
+} from '@/components/ui/sheet';
+import { useCreateAccount } from '@/features/accounts/api/use-create-account';
+import { useGetAccounts } from '@/features/accounts/api/use-get-accounts';
+import { useCreateCategory } from '@/features/categories/api/use-create-category';
+import { useGetCategories } from '@/features/categories/api/use-get-categories';
+import { useCreateTransaction } from '../api/use-create-transaction';
+import { useNewTransaction } from '../hooks/use-new-transaction';
+import TransactionForm from './transaction-form';
+import { Loader2 } from 'lucide-react';
 
 const formSchema = inserTransactionSchema.omit({ id: true });
 
@@ -59,9 +59,7 @@ const NewTransactiontSheet = () => {
     categoryMutation.isPending ||
     accountMutation.isPending;
 
-  const isLoading =
-    categroryQuery.isPending ||
-    accoutnQuery.isLoading;
+  const isLoading = categroryQuery.isPending || accoutnQuery.isLoading;
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
@@ -74,7 +72,7 @@ const NewTransactiontSheet = () => {
         </SheetHeader>
         {isLoading ? (
           <>
-          <Loader2 className="size-4 animate-spin" />
+            <Loader2 className="size-4 animate-spin" />
           </>
         ) : (
           <TransactionForm
@@ -86,11 +84,11 @@ const NewTransactiontSheet = () => {
             onCreateAccount={onCreateAccount}
             defaultValues={{
               date: new Date(),
-              amount: "",
-              payee: "",
-              accountId: "",
-              categoryId: "",
-              notes: "",
+              amount: '',
+              payee: '',
+              accountId: '',
+              categoryId: '',
+              notes: '',
             }}
           />
         )}

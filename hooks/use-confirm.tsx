@@ -1,6 +1,6 @@
-import { JSX, useState } from "react";
+import { JSX, useState } from 'react';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,13 +8,13 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 
 export const useConfirm = (
   title: string,
   message: string,
   onConfirm?: () => void,
-  onCancel?: () => void
+  onCancel?: () => void,
 ): [() => JSX.Element, () => Promise<unknown>] => {
   const [promise, setPromise] = useState<{
     resolve: (value: boolean) => void;

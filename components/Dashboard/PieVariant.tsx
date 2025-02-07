@@ -1,13 +1,12 @@
-"use client";
+'use client';
 
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
-import { Cell, Label, Pie, PieChart, Legend } from "recharts";
-import React from "react";
+} from '@/components/ui/chart';
+import { Cell, Label, Legend, Pie, PieChart } from 'recharts';
 
 type Props = {
   data?: {
@@ -31,7 +30,7 @@ const PieVariant = ({ data, total }: Props) => {
 
   const chartConfig = {
     visitors: {
-      label: "Visitors",
+      label: 'Visitors',
     },
     ...dataColor,
   } satisfies ChartConfig;
@@ -44,11 +43,7 @@ const PieVariant = ({ data, total }: Props) => {
       <PieChart>
         <ChartTooltip
           cursor={false}
-          content={
-            <ChartTooltipContent
-              indicator="dot"
-            />
-          }
+          content={<ChartTooltipContent indicator="dot" />}
         />
         <Legend />
         <Pie
@@ -61,14 +56,11 @@ const PieVariant = ({ data, total }: Props) => {
         >
           {/* Add cells to define the color for each segment */}
           {data?.map((entry, index) => (
-            <Cell 
-              key={`cell-${index}`} 
-              fill={COLORS[index % COLORS.length]}
-            />
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
           <Label
             content={({ viewBox }) => {
-              if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+              if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
                 return (
                   <text
                     x={viewBox.cx}

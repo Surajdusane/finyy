@@ -1,13 +1,12 @@
-"use client";
+'use client';
 
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
-import { RadarChart, PolarAngleAxis, Radar, PolarGrid, Legend } from "recharts";
-import React from "react";
+} from '@/components/ui/chart';
+import { Legend, PolarAngleAxis, PolarGrid, Radar, RadarChart } from 'recharts';
 
 type Props = {
   data?: {
@@ -17,7 +16,7 @@ type Props = {
   total?: number;
 };
 
-const RadarChartComponent = ({ data, total }: Props) => {
+const RadarChartComponent = ({ data }: Props) => {
   // Define an array of colors you want to use
   const COLORS = ['#3b82f6', '#f43f5e', '#dfc13a', '#dbeafe'];
 
@@ -39,7 +38,7 @@ const RadarChartComponent = ({ data, total }: Props) => {
       className="mx-auto aspect-square max-h-[350px]  "
     >
       <RadarChart data={data} className="flex items-center h-full">
-        <Legend  />
+        <Legend />
         <PolarGrid />
         <PolarAngleAxis dataKey="name" />
         <Radar
@@ -50,13 +49,7 @@ const RadarChartComponent = ({ data, total }: Props) => {
           fill={COLORS[0]}
           fillOpacity={0.6}
         />
-        <ChartTooltip
-          content={
-            <ChartTooltipContent
-              indicator="dot"
-            />
-          }
-        />
+        <ChartTooltip content={<ChartTooltipContent indicator="dot" />} />
       </RadarChart>
     </ChartContainer>
   );

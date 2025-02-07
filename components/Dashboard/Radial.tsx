@@ -1,6 +1,11 @@
-import React from "react";
-import { RadialBarChart, RadialBar, Legend, Tooltip } from "recharts";
-import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "../ui/chart";
+import React from 'react';
+import { Legend, RadialBar, RadialBarChart } from 'recharts';
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from '../ui/chart';
 
 // Define interfaces for our data structures
 interface DataItem {
@@ -14,8 +19,6 @@ interface RadialProps {
   total?: number;
 }
 
-  
-
 const Radial: React.FC<RadialProps> = ({ data = [], total = 100 }) => {
   const dataColor: { [key: string]: { label: string; color: string } } = {};
   const COLORS = ['#3b82f6', '#f43f5e', '#dfc13a', '#dbeafe'];
@@ -27,9 +30,9 @@ const Radial: React.FC<RadialProps> = ({ data = [], total = 100 }) => {
   });
   const chartConfig = {
     visitors: {
-      label: "Visitors",
+      label: 'Visitors',
     },
-    ...dataColor
+    ...dataColor,
   } satisfies ChartConfig;
   // Define colors for the chart
 
@@ -37,12 +40,15 @@ const Radial: React.FC<RadialProps> = ({ data = [], total = 100 }) => {
   const processedData: DataItem[] = data.map((item, index) => ({
     name: item.name,
     value: item.value,
-    fill: COLORS[index % COLORS.length]
+    fill: COLORS[index % COLORS.length],
   }));
 
   return (
-    <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[350px]">
-      <RadialBarChart 
+    <ChartContainer
+      config={chartConfig}
+      className="mx-auto aspect-square max-h-[350px]"
+    >
+      <RadialBarChart
         width={350}
         height={350}
         innerRadius="50%"
@@ -52,18 +58,17 @@ const Radial: React.FC<RadialProps> = ({ data = [], total = 100 }) => {
         endAngle={-270}
       >
         <RadialBar
-         cornerRadius={15}
+          cornerRadius={15}
           endAngle={90}
           background
           dataKey="value"
-          label={{ 
+          label={{
             position: 'insideStart',
             fill: '#fff',
-            formatter: (value: number) => `${Math.round(value)}%`
+            formatter: (value: number) => `${Math.round(value)}%`,
           }}
         />
-        <Legend
-        />
+        <Legend />
         <ChartTooltip
           cursor={false}
           content={<ChartTooltipContent hideLabel nameKey="label" />}

@@ -1,6 +1,6 @@
-import { JSX, useRef, useState } from "react";
+import { JSX, useRef, useState } from 'react';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,18 +8,20 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { useGetAccounts } from "@/features/accounts/api/use-get-accounts";
-import { useCreateAccount } from "@/features/accounts/api/use-create-account";
-import { Select } from "@/components/ui/select-custom";
+} from '@/components/ui/dialog';
+import { useGetAccounts } from '@/features/accounts/api/use-get-accounts';
+import { useCreateAccount } from '@/features/accounts/api/use-create-account';
+import { Select } from '@/components/ui/select-custom';
 
-export const useSelectAccount = (): [() => JSX.Element, () => Promise<unknown>] => {
-
+export const useSelectAccount = (): [
+  () => JSX.Element,
+  () => Promise<unknown>,
+] => {
   const accoutnQuery = useGetAccounts();
-  const accountMuttation = useCreateAccount()
+  const accountMuttation = useCreateAccount();
   const onCreateAccount = (name: string) => {
-    accountMuttation.mutate({name})
-  }
+    accountMuttation.mutate({ name });
+  };
   const accountOptions = (accoutnQuery.data || []).map((account) => ({
     label: account.name,
     value: account.id,
@@ -55,9 +57,11 @@ export const useSelectAccount = (): [() => JSX.Element, () => Promise<unknown>] 
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Select Account</DialogTitle>
-          <DialogDescription>Please select an account to Continue</DialogDescription>
+          <DialogDescription>
+            Please select an account to Continue
+          </DialogDescription>
         </DialogHeader>
-        <Select 
+        <Select
           placeholder="Select Account"
           options={accountOptions}
           onCreate={onCreateAccount}

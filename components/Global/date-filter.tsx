@@ -1,18 +1,18 @@
-"use client"
-import React, { useState } from 'react';
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { format, subDays } from "date-fns";
-import { DateRange } from "react-day-picker";
-import { ChevronDown } from "lucide-react";
-import qs from "query-string";
-import { cn, formatDateRange } from "@/lib/utils";
+'use client';
+import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
 import {
   Popover,
-  PopoverTrigger,
   PopoverContent,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { formatDateRange } from '@/lib/utils';
+import { format, subDays } from 'date-fns';
+import { ChevronDown } from 'lucide-react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import qs from 'query-string';
+import { useState } from 'react';
+import { DateRange } from 'react-day-picker';
 
 interface Period {
   from: Date;
@@ -24,9 +24,9 @@ const DateFilter = () => {
   const pathName = usePathname();
   const params = useSearchParams();
 
-  const accountId = params.get("accountId")
-  const fromParam = params.get("from");
-  const toParam = params.get("to");
+  const accountId = params.get('accountId');
+  const fromParam = params.get('from');
+  const toParam = params.get('to');
 
   const defaultTo = new Date();
   const defaultFrom = subDays(defaultTo, 30);
@@ -41,8 +41,12 @@ const DateFilter = () => {
 
   const pushToUrl = (dateRange: DateRange | undefined) => {
     const query = {
-      from: dateRange?.from ? format(dateRange.from, "yyyy-MM-dd") : format(defaultFrom, "yyyy-MM-dd"),
-      to: dateRange?.to ? format(dateRange.to, "yyyy-MM-dd") : format(defaultTo, "yyyy-MM-dd"),
+      from: dateRange?.from
+        ? format(dateRange.from, 'yyyy-MM-dd')
+        : format(defaultFrom, 'yyyy-MM-dd'),
+      to: dateRange?.to
+        ? format(dateRange.to, 'yyyy-MM-dd')
+        : format(defaultTo, 'yyyy-MM-dd'),
       accountId,
     };
 
@@ -54,7 +58,7 @@ const DateFilter = () => {
       {
         skipNull: true,
         skipEmptyString: true,
-      }
+      },
     );
     router.push(url);
   };
@@ -107,11 +111,7 @@ const DateFilter = () => {
           className="p-3"
         />
         <div className="p-4 w-full flex items-center gap-x-2 border-t">
-          <Button
-            onClick={onReset}
-            variant="outline"
-            className="w-full"
-          >
+          <Button onClick={onReset} variant="outline" className="w-full">
             Reset
           </Button>
           <Button

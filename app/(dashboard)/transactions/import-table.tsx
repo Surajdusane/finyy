@@ -1,5 +1,12 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import TableHeadSelect from "./table-head-select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import TableHeadSelect from './table-head-select';
 
 type Props = {
   headers: string[];
@@ -10,37 +17,35 @@ type Props = {
 
 const ImportTable = ({
   headers = [],
-  body = [],  
+  body = [],
   selectedColumns,
   onTableHeadSelectChange,
 }: Props) => {
   return (
     <div className="rounded-md border overflow-hidden">
       <Table>
-       <TableHeader className="bg-muted">
-        <TableRow>
-          {headers.map((_item, index) => (
-            <TableHead key={index}>
-              <TableHeadSelect 
-                coloumnIndex={index}
-                selectedColumns={selectedColumns}
-                onChange={onTableHeadSelectChange}
-              />
-            </TableHead>
-          ))}
-        </TableRow>
-       </TableHeader>
-       <TableBody>
-        {body.map((row: string[], index) => (
-          <TableRow key={index}>
-            {row.map((cell, index) => (
-              <TableCell key={index}>
-                {cell}
-              </TableCell>
+        <TableHeader className="bg-muted">
+          <TableRow>
+            {headers.map((_item, index) => (
+              <TableHead key={index}>
+                <TableHeadSelect
+                  coloumnIndex={index}
+                  selectedColumns={selectedColumns}
+                  onChange={onTableHeadSelectChange}
+                />
+              </TableHead>
             ))}
           </TableRow>
-        ))}
-       </TableBody>
+        </TableHeader>
+        <TableBody>
+          {body.map((row: string[], index) => (
+            <TableRow key={index}>
+              {row.map((cell, index) => (
+                <TableCell key={index}>{cell}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
     </div>
   );

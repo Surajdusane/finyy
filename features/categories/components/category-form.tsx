@@ -1,13 +1,13 @@
-"use client"
+'use client';
 
-import { z } from "zod";
-import { Trash } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from 'zod';
+import { Trash } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { inserCategorySchema } from "@/db/schema";
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { inserCategorySchema } from '@/db/schema';
 import {
   Form,
   FormControl,
@@ -16,8 +16,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { useEffect, useRef } from "react";
+} from '@/components/ui/form';
+import { useEffect, useRef } from 'react';
 
 const formSchema = inserCategorySchema.pick({ name: true });
 
@@ -38,13 +38,13 @@ const CategoryForm = ({
   onDelete,
   disabled,
 }: FormProps) => {
-    const element = useRef<HTMLInputElement>(null)
+  const element = useRef<HTMLInputElement>(null);
 
-    useEffect(() => {
-        if(element.current){
-            element.current.focus()
-        }
-    },[]);
+  useEffect(() => {
+    if (element.current) {
+      element.current.focus();
+    }
+  }, []);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -70,30 +70,30 @@ const CategoryForm = ({
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                <Input
-                  disabled={disabled}
-                  placeholder="e.g, Food, Travel, etc."
-                  {...field}
-                  ref={element}
-                />
+                  <Input
+                    disabled={disabled}
+                    placeholder="e.g, Food, Travel, etc."
+                    {...field}
+                    ref={element}
+                  />
                 </FormControl>
               </FormItem>
             )}
           />
           <Button className="w-full" disabled={disabled} type="submit">
-            {id ? "Save Changes" : "Create Category"}
+            {id ? 'Save Changes' : 'Create Category'}
           </Button>
           {!!id && (
             <Button
-            type="button"
-            className="w-full"
-            onClick={handleDelete}
-            disabled={disabled}
-            variant="outline"
-          >
-            <Trash className="size-4 mr-2" />
-            Delete Category
-          </Button>
+              type="button"
+              className="w-full"
+              onClick={handleDelete}
+              disabled={disabled}
+              variant="outline"
+            >
+              <Trash className="size-4 mr-2" />
+              Delete Category
+            </Button>
           )}
         </div>
       </form>

@@ -1,6 +1,5 @@
-"use client";
+'use client';
 
-import * as React from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -12,7 +11,8 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table";
+} from '@tanstack/react-table';
+import * as React from 'react';
 
 import {
   Table,
@@ -21,12 +21,12 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 
-import { useConfirm } from "@/hooks/use-confirm";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Trash } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useConfirm } from '@/hooks/use-confirm';
+import { Trash } from 'lucide-react';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -43,10 +43,13 @@ export function DataTable<TData, TValue>({
   onDelete,
   disabled,
 }: DataTableProps<TData, TValue>) {
-  const [ConfirmationDialog, confirm] = useConfirm("Are you sure?", "This will delete all the selected accounts")
+  const [ConfirmationDialog, confirm] = useConfirm(
+    'Are you sure?',
+    'This will delete all the selected accounts',
+  );
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
+    [],
   );
   const [rowSelection, setRowSelection] = React.useState({});
   const table = useReactTable({
@@ -73,7 +76,7 @@ export function DataTable<TData, TValue>({
         <Input
           placeholder={`Filter ${fileterKey}...`}
           value={
-            (table.getColumn(fileterKey)?.getFilterValue() as string) ?? ""
+            (table.getColumn(fileterKey)?.getFilterValue() as string) ?? ''
           }
           onChange={(event) =>
             table.getColumn(fileterKey)?.setFilterValue(event.target.value)
@@ -81,23 +84,23 @@ export function DataTable<TData, TValue>({
           className="max-w-sm mr-1"
         />
         {table.getFilteredSelectedRowModel().rows.length > 0 && (
-            <Button
-                size={"sm"}
-                variant={"outline"}
-                className="ml-auto font-medium text-xs"
-                disabled={disabled}
-                onClick={async () => {
-                  const ok = await confirm()
+          <Button
+            size={'sm'}
+            variant={'outline'}
+            className="ml-auto font-medium text-xs"
+            disabled={disabled}
+            onClick={async () => {
+              const ok = await confirm();
 
-                  if(ok){
-                    onDelete(table.getFilteredSelectedRowModel().rows)
-                    table.resetRowSelection()
-                  }
-                }}
-            >
-                <Trash className="size-4" />
-                Delete ({table.getFilteredSelectedRowModel().rows.length})
-            </Button>
+              if (ok) {
+                onDelete(table.getFilteredSelectedRowModel().rows);
+                table.resetRowSelection();
+              }
+            }}
+          >
+            <Trash className="size-4" />
+            Delete ({table.getFilteredSelectedRowModel().rows.length})
+          </Button>
         )}
       </div>
       <div className="rounded-md border">
@@ -112,7 +115,7 @@ export function DataTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
                   );
@@ -125,13 +128,13 @@ export function DataTable<TData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
+                  data-state={row.getIsSelected() && 'selected'}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}
@@ -152,7 +155,7 @@ export function DataTable<TData, TValue>({
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
+          {table.getFilteredSelectedRowModel().rows.length} of{' '}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
 
