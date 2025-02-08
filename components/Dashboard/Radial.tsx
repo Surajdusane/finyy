@@ -19,7 +19,7 @@ interface RadialProps {
   total?: number;
 }
 
-const Radial: React.FC<RadialProps> = ({ data = [], total = 100 }) => {
+const Radial: React.FC<RadialProps> = ({ data = [] }) => {
   const dataColor: { [key: string]: { label: string; color: string } } = {};
   const COLORS = ['#3b82f6', '#f43f5e', '#dfc13a', '#dbeafe'];
   data?.forEach((item, index) => {

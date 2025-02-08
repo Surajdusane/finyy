@@ -13,7 +13,6 @@ const DataGrid = () => {
   const params = useSearchParams();
   const to = params.get('to') || '';
   const from = params.get('from') || '';
-  const accountId = params.get('accountId') || '';
 
   const dateRangeLable = formatDateRange({ from, to });
 

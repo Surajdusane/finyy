@@ -34,7 +34,7 @@ type Props = {
 };
 
 export function AreaVariant2({ data }: Props) {
-  const [timeRange, setTimeRange] = React.useState('90d');
+  const [timeRange] = React.useState('90d');
 
   const filteredData = data.filter((item) => {
     const date = new Date(item.date);

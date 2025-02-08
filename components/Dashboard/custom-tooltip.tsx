@@ -8,7 +8,6 @@ export const CustomTooltip = ({ activated, payload }: any) => {
 
   const date = payload[0].payload.date;
   const income = payload[0].value;
-  const expense = payload[1].value;
 
   return (
     <div className="rounded-sm bg-white shadow-sm border overflow-hidden">

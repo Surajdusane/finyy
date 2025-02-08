@@ -30,7 +30,7 @@ const INITIAL_IMPORT_RESULT = {
   meta: {},
 };
 
-const TransactionPage = () => {
+const TransactionPag = () => {
   const [AccountDialoag, confirm] = useSelectAccount();
 
   const [variant, setVariant] = useState<VARIANTS>(VARIANTS.LIST);
@@ -151,4 +151,10 @@ const TransactionPage = () => {
   );
 };
 
-export default TransactionPage;
+export default function TransactionPage() {
+  return (
+    <Suspense fallback={<Loader2 className='size-8 animate-spin' />}>
+      <TransactionPag />
+    </Suspense>
+  )
+};

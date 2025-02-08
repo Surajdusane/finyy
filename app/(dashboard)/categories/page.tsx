@@ -12,7 +12,7 @@ import { Loader2, Plus } from 'lucide-react';
 import { columns } from './columns';
 import { Suspense } from 'react';
 
-const CategoriesPage = () => {
+const CategoriesPag = () => {
   const { onOpen } = useNewCategory();
   const deleteCategory = useBulkDeleteCategories();
   const categoryQuery = useGetCategories();
@@ -70,4 +70,10 @@ const CategoriesPage = () => {
   );
 };
 
-export default CategoriesPage;
+export default function CategoriesPage() {
+  return (
+    <Suspense fallback={<Loader2 className='size-8 animate-spin' />}>
+      <CategoriesPag />
+    </Suspense>
+  )
+};

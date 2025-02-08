@@ -12,7 +12,7 @@ import { Loader2, Plus } from 'lucide-react';
 import { columns } from './columns';
 import { Suspense } from 'react';
 
-const AccountsPage = () => {
+const AccountsPag = () => {
   const { onOpen } = useNewAccount();
   const deleteAccounts = useBulkDeleteAccounts();
   const accountQuery = useGetAccounts();
@@ -68,4 +68,10 @@ const AccountsPage = () => {
   );
 };
 
-export default AccountsPage;
+export default function AccountsPage() {
+  return (
+    <Suspense fallback={<Loader2 className='size-8 animate-spin' />}>
+      <AccountsPag />
+    </Suspense>
+  )
+};
