@@ -27,7 +27,7 @@ const Herosec = () => {
             </Link>
             <Link href={'/overview'}>
               <Button className="px-6 py-6 font-medium text-lg">
-                Get Sarted
+                Get Started
               </Button>
             </Link>
           </div>
